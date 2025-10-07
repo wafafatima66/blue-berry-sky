@@ -51,6 +51,5 @@ export function SectionReveal({ children, className, delay = 0 }: RevealProps) {
 }
 
 export default function ScrollReveal() {
-  // No-op: previously global GSAP class-based triggers; now use the wrappers above.
   return null;
 }

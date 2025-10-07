@@ -1,22 +1,16 @@
 "use client";
 import { useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    gsap.registerPlugin(ScrollToPlugin);
     const headerOffset = 80;
 
     const scrollToHash = (hash: string) => {
       const id = hash.replace(/^#/, "");
       const target = document.getElementById(id);
       if (!target) return;
-      gsap.to(window, {
-        duration: 0.6,
-        scrollTo: { y: target, offsetY: headerOffset },
-        ease: "power2.out",
-      });
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top, behavior: "smooth" });
     };
 
     // On first load, if there is a hash, scroll to it after layout
