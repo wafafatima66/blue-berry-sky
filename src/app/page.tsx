@@ -10,7 +10,6 @@ import {
   Network,
   Shield,
   CheckCircle2,
-  ArrowDownCircle,
 } from "lucide-react";
 import BerryIcon from "@/components/BerryIcon";
 

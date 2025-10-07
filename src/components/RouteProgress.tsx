@@ -25,7 +25,6 @@ export default function RouteProgress() {
       clearTimeout(step2);
       clearTimeout(step3);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   if (!active) return null;

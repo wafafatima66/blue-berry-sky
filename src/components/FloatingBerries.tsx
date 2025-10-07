@@ -1,13 +1,12 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-type Berry = { id: number; x: number; y: number; size: number };
+type Berry = { id: number; x: number; y: number; size: number; dx: number; dy: number; dur: number };
 
 type Props = { count?: number };
 
 export default function FloatingBerries({ count = 6 }: Props) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const [berries, setBerries] = useState<Berry[]>([]);
 
   // Generate random positions client-side only to avoid SSR hydration mismatches
@@ -17,39 +16,21 @@ export default function FloatingBerries({ count = 6 }: Props) {
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: 6 + Math.random() * 12,
+      dx: 2 + Math.random() * 5,
+      dy: 4 + Math.random() * 6,
+      dur: 6 + Math.random() * 4,
     }));
     setBerries(arr);
-  }, []);
-
-  // Animate after berries are placed
-  useEffect(() => {
-    if (!containerRef.current || berries.length === 0) return;
-    const ctx = gsap.context(() => {
-      berries.forEach((b) => {
-        const el = document.getElementById(`berry-${b.id}`);
-        if (!el) return;
-        const randY = 4 + Math.random() * 6;
-        const randX = 2 + Math.random() * 5;
-        const dur = 6 + Math.random() * 4;
-        const tl = gsap.timeline({ repeat: -1, yoyo: true });
-        tl.to(el, {
-          y: `+=${randY}`,
-          x: `+=${randX}`,
-          duration: dur,
-          ease: "sine.inOut",
-          opacity: 0.4,
-        });
-      });
-    }, containerRef);
-    return () => ctx.revert();
-  }, [berries]);
+  }, [count]);
 
   return (
-    <div ref={containerRef} aria-hidden className="pointer-events-none absolute inset-0 -z-0" suppressHydrationWarning>
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-0" suppressHydrationWarning>
       {berries.map((b) => (
-        <div
+        <motion.div
           key={b.id}
-          id={`berry-${b.id}`}
+          initial={{ x: 0, y: 0, opacity: 0.3 }}
+          animate={{ x: [0, b.dx], y: [0, b.dy], opacity: [0.3, 0.45] }}
+          transition={{ duration: b.dur, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
           style={{
             position: "absolute",
             left: `${b.x}%`,

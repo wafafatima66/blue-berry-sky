@@ -35,19 +35,20 @@ export async function POST(request: Request) {
     `;
 
     try {
-      const { error } = await resend.emails.send({ from, to, subject, html, reply_to: String(email) });
+      const { error } = await resend.emails.send({ from, to, subject, html, replyTo: String(email) });
       if (error) {
         console.error("Resend error:", error);
         return NextResponse.json({ ok: false, error: "Failed to send email" }, { status: 500 });
       }
-    } catch (err: any) {
-      const msg = typeof err?.message === "string" ? err.message : "Email service error";
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Email service error";
       console.error("Resend thrown error:", err);
       return NextResponse.json({ ok: false, error: msg }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
-  } catch (e) {
+  } catch (error) {
+    console.error("Contact route invalid request:", error);
     return NextResponse.json({ ok: false, error: "Invalid request" }, { status: 400 });
   }
 }
