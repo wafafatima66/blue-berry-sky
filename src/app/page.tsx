@@ -1,103 +1,208 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import {
+  ShieldCheck,
+  Cloud,
+  Cpu,
+  Code,
+  Network,
+  Shield,
+  CheckCircle2,
+  ArrowDownCircle,
+} from "lucide-react";
+import BerryIcon from "@/components/BerryIcon";
+
+const services = [
+  {
+    slug: "cybersecurity",
+    icon: <ShieldCheck className="text-sky-500" />,
+    title: "Cybersecurity",
+    desc: "Proactive defense, audits, and compliance for resilient systems.",
+  },
+  {
+    slug: "cloud-computing",
+    icon: <Cloud className="text-sky-500" />,
+    title: "Cloud & DevOps",
+    desc: "Scalable cloud, CI/CD pipelines, and cost optimization.",
+  },
+  {
+    slug: "software-development",
+    icon: <Code className="text-sky-500" />,
+    title: "Software & Apps",
+    desc: "Web and mobile tailored to your business outcomes.",
+  },
+  {
+    slug: "hardware-supply",
+    icon: <Cpu className="text-sky-500" />,
+    title: "Hardware Supply",
+    desc: "Servers, networking, workstations, and accessories.",
+  },
+  {
+    slug: "networking",
+    icon: <Network className="text-sky-500" />,
+    title: "Networking",
+    desc: "Secure, high-availability network architecture and rollout.",
+  },
+  {
+    slug: "it-consulting",
+    icon: <Shield className="text-sky-500" />,
+    title: "IT Consulting",
+    desc: "Strategic guidance to modernize and de-risk technology.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* ─────────────── Hero Section ─────────────── */}
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-24 md:pt-36 md:pb-28">
+
+        {/* Static hero; no animated clouds or berries */}
+
+        {/* Text & Image */}
+        <div className="grid md:grid-cols-2 items-center gap-10">
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900">
+              Empowering Your Business with Smart Digital Solutions
+            </h1>
+            <p className="mt-4 text-lg text-slate-700">
+              We design digital experiences that inspire and empower.
+            </p>
+            <div className="mt-8 flex items-center md:justify-start justify-center gap-4">
+              <Link
+                href="/contact"
+                className="rounded-full bg-sky-500 text-white px-6 py-3 shadow-lg"
+              >
+                Start Your Project
+              </Link>
+            </div>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative rounded-2xl p-3  ">
+              <Image
+                src="/6.svg"
+                alt="Blueberries illustration"
+                width={768}
+                height={768}
+                priority
+                className="w-full max-w-md h-auto rounded-xl mask-soft mix-blend-multiply hero-image-animated"
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Decorative blueberry graphic (static) */}
+        <div className="mt-16 mx-auto w-8 h-8">
+          <BerryIcon className="w-8 h-8" />
+        </div>
+      </section>
+
+      {/* ─────────────── About Section ─────────────── */}
+      <section
+        id="about"
+        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24 mt-10"
+      >
+        <div className="p-8 md:p-10 border-t border-slate-200">
+          <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-800">
+            <BerryIcon className="w-6 h-6" />
+            About Blueberry IT Sky
+          </h2>
+          <p className="mt-4 text-slate-700 leading-relaxed">
+            We are a full-service IT agency based in Dhaka, dedicated to crafting
+            seamless digital experiences. From startups to enterprises, we design,
+            develop, and maintain technology that transforms businesses into
+            digital leaders.
+          </p>
+        </div>
+      </section>
+
+      {/* ─────────────── Services Section ─────────────── */}
+      <section id="services" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="flex items-end justify-between">
+          <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-800">
+            <BerryIcon className="w-6 h-6" />
+            What We Do
+          </h2>
+          <Link
+            href="/services"
+            className="text-slate-700"
+          >
+            View all services →
+          </Link>
+        </div>
+
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="service-bubble rounded-2xl border border-slate-200 p-6 bg-white shadow-sm"
+            >
+              <div className="w-10 h-10 rounded-lg bg-sky-50 flex items-center justify-center mb-4">
+                {s.icon}
+              </div>
+              <div className="font-semibold text-lg">{s.title}</div>
+              <p className="mt-1 text-sm text-slate-600">{s.desc}</p>
+              <div className="mt-4 text-sm font-semibold text-sky-600 opacity-100">
+                <Link href={`/services/${s.slug}`}>Learn more →</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─────────────── Why Choose Us ─────────────── */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-800">
+          <BerryIcon className="w-6 h-6" />
+          Why Choose Us
+        </h2>
+
+        <div className="mt-6 grid sm:grid-cols-2 gap-2">
+          {[
+            "Experienced Developers & Designers",
+            "Timely Project Delivery",
+            "Transparent Communication",
+            "Long-Term Client Support",
+          ].map((item) => (
+            <div
+              key={item}
+              className="flex items-start gap-3 p-3 md:p-4 border-b border-slate-200/60 bg-transparent rounded-none shadow-none"
+            >
+              <div className="mt-0.5 text-green-600">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <div className="font-medium text-slate-800">{item}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      
+
+      {/* ─────────────── Final CTA ─────────────── */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/80 p-8 md:p-10 shadow-sm">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white to-sky-50" />
+
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            Let’s Create Something Magical Together.
+          </h2>
+          <p className="mt-2 text-slate-700">
+            White fading back into blue — simple, calm, and inviting.
+          </p>
+          <div className="mt-6">
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-full bg-sky-500 text-white px-6 py-3 font-semibold shadow"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
